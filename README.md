@@ -15,9 +15,10 @@ Course materials, presentations, hands-on exercises, example code, and project r
 ## Course index
 
 - [Advanced Phase](course-materials/advanced-phase/)
-- [Session 2: First build with Codex](course-materials/advanced-phase/session-02/)
+- [Session 2: Build and publish Content Studio](course-materials/advanced-phase/session-02/)
+- [Session 2 presentation prompts](course-materials/advanced-phase/session-02/build-prompts.md)
 
-This repository currently contains the organizational structure. Course files and application code can be uploaded as they become ready.
+The repository includes Session 2 build prompts and an AGENTS.md teaching example. Additional course files and application code can be uploaded as they become ready.
 
 ## Adding materials
 
