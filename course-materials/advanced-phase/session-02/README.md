@@ -11,6 +11,8 @@ Establish the Codex environment and create the first Content Studio application 
 
 ## Materials
 
+- [AGENTS.md example and discussion](../../../resources/agents-md-example.md)
+
 Upload the session guide and workbook here. Place the presentation in [presentations/advanced-phase/session-02](../../../presentations/advanced-phase/session-02/), then add direct links here.
 
 Runnable examples can be added to [code](../../../code/). Standalone application repositories belong in the [project index](../../../projects/).
