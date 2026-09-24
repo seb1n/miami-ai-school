@@ -1,0 +1,332 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Miami AI School | Design, Migrate, Deploy</title><style>body{margin:0;background:#f4f1e9;color:#173d35;font:18px/1.65 system-ui,sans-serif}main{max-width:980px;margin:0 auto;padding:56px 28px 100px}h1{font-size:48px;line-height:1.12;max-width:760px}h2{font-size:30px;margin-top:64px;border-top:1px solid #ccd0c5;padding-top:24px}h3{margin-top:38px}a{color:#97432e}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#173d35;color:#fff;padding:28px;border-radius:6px;font:16px/1.6 ui-monospace,monospace;position:relative}code{font-size:.92em}table{border-collapse:collapse;width:100%;font-size:15px}th,td{padding:13px;border:1px solid #bbc5b8;text-align:left}th{background:#e4e8dd}.copy{display:block;margin:10px 0 0 auto;padding:9px 16px;background:#b44d32;color:white;border:0;border-radius:4px;cursor:pointer;font-weight:600}li{margin:8px 0}@media print{body{font-size:11px;background:white}main{padding:0}.copy{display:none}pre{background:#f0f2ed;color:#173d35;border:1px solid #ccc;break-inside:avoid}h2,h3{break-after:avoid}}</style><main><h1>Design with intent. Migrate with confidence.</h1>
+<p>Miami AI School | Content Studio practical workshop | 24 September 2026</p>
+<p>Use this workbook with the 34-slide presentation. The first run is a staging rehearsal with synthetic or authorized test data. Production cutover is a separate, reviewed step. These materials do not indicate that any real application has already been migrated or deployed.</p>
+<h2>Workshop outcome</h2>
+<p>Create a deliberate visual design, preserve drafts and private images while moving D1 data into Supabase, and verify the application on a Vercel deployment. The reference code currently uses a Sites/Vinext Worker runtime, D1, ChatGPT identity headers and R2. Reinspect your own checkout rather than assuming it has the same dependencies.</p>
+<p>Suggested pacing: setup before class; 10 minutes inventory; 30 minutes design; 40 minutes schema, identity and import rehearsal; 25 minutes runtime and preview; 15 minutes verification and recovery discussion. A real production migration may require additional work outside this lab.</p>
+<h2>1. Setup checklist</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Access the source repository and create an isolated migration branch.</li>
+<li><input disabled="" type="checkbox"> Use the existing lockfile and package manager. Run <code>node --version</code>, <code>npm --version</code> (or the repo&#39;s manager), and <code>git --version</code>. Check package.json engines and provider requirements before installing or upgrading Node.</li>
+<li><input disabled="" type="checkbox"> Confirm the app starts locally and record its current test/build results.</li>
+<li><input disabled="" type="checkbox"> Have GitHub, Supabase and Vercel accounts with access to the intended projects.</li>
+<li><input disabled="" type="checkbox"> Create or select a disposable Supabase staging project and two dedicated test users.</li>
+<li><input disabled="" type="checkbox"> Install/connect Supabase and Vercel in your coding agent&#39;s plugin directory. Complete the provider sign-in and verify the intended team/project. Installation is not proof of authorization.</li>
+<li><input disabled="" type="checkbox"> If a directory plugin is not available, use the provider&#39;s official MCP setup for your agent. Avoid duplicate connections to the same service.</li>
+<li><input disabled="" type="checkbox"> Install Impeccable in the project and verify the skill appears.</li>
+<li><input disabled="" type="checkbox"> Prepare authorized source export access or a clearly labeled synthetic fixture. Local development data is not a substitute for a verified live export.</li>
+</ul>
+<h3>Plugin and MCP alternatives</h3>
+<p>Supabase&#39;s official endpoint supports project scoping. Substitute the real staging project ref in the client configuration; the placeholder below is not a working endpoint:</p>
+<pre><code class="language-text">https://mcp.supabase.com/mcp?project_ref=YOUR_STAGING_PROJECT_REF&amp;read_only=true
+</code></pre>
+<p>Start with read-only inspection. Schema changes require an explicitly authorized write-capable staging connection. A project-scoped connection may not expose account-level project-listing tools; reading table metadata is a valid connection check. Follow the official client-specific authentication instructions.</p>
+<p>Vercel&#39;s official MCP endpoint:</p>
+<pre><code class="language-text">https://mcp.vercel.com
+</code></pre>
+<p>Codex CLI alternative, if the CLI is installed:</p>
+<pre><code class="language-bash">codex mcp add vercel --url https://mcp.vercel.com
+</code></pre>
+<p>Claude Code alternative:</p>
+<pre><code class="language-bash">claude mcp add --transport http vercel https://mcp.vercel.com
+</code></pre>
+<p>Complete OAuth and verify the team/project. Follow the current provider docs if your client presents a different setup flow. Do not paste access tokens into prompts.</p>
+<h3>Design skill</h3>
+<p>From the project directory:</p>
+<pre><code class="language-bash">npx impeccable install
+</code></pre>
+<p>Select your coding agent and project scope. Reload the agent. In Codex, find it through /skills or invoke $impeccable. Review the project hook in /hooks if installed. In Claude Code, use /impeccable. Use the installed skill&#39;s help to confirm supported commands. Suggested progression: init, audit, critique, focused implementation, polish. The skill guides decisions; it does not replace browser testing.</p>
+<h3>App libraries</h3>
+<p>Content Studio already includes a shadcn configuration, Tailwind and lucide-react. Reuse them. In a fresh compatible project, follow the official shadcn setup; do not run init over an existing configuration without reviewing what will change.</p>
+<pre><code class="language-bash"># Fresh compatible project only:
+npx shadcn@latest init
+# Add only components actually needed:
+npx shadcn@latest add button input textarea dialog
+# Target Supabase client integration, if missing:
+npm install @supabase/supabase-js @supabase/ssr
+# Optional, only for a specific planned animation:
+npm install motion
+</code></pre>
+<p>Use the repository&#39;s package manager equivalents. Commit the resulting lockfile. Test a small sample before applying new components throughout the app. Server rendering requires the current documented SSR client/session setup, not a browser client reused everywhere.</p>
+<h2>2. Design brief template</h2>
+<p><strong>Audience:</strong> Busy founders writing LinkedIn and X drafts.</p>
+<p><strong>Primary flow:</strong> brief -&gt; generate -&gt; edit -&gt; save -&gt; refresh -&gt; reopen.</p>
+<p><strong>Direction:</strong> Editorial workspace. Warm paper, dark green type, restrained terracotta primary action. A compact draft list supports a dominant editor. Real copy replaces generic promises. Icons communicate actions. Avoid adding charts or cards that have no role in the task.</p>
+<p><strong>Tokens to start with:</strong> paper #F4F1E9; ink #173D35; accent #B44D32; spacing 4/8/12/16/24/32/48px; body 16px; heading scale 24/32px; radius 8px. These are proposed design values, not universal rules. Verify rendered contrast and readability. Use one intentional type family and clear weight/size hierarchy.</p>
+<p><strong>Responsive behavior:</strong> At 390px, single-column editor with accessible draft picker. At 1440px, compact list beside the editor. Maintain focus and useful controls at zoomed sizes.</p>
+<p><strong>State coverage:</strong> empty, generating, unsaved, saved, validation error, network failure, expired session. Reduced motion must remain usable.</p>
+<p><strong>Definition of done:</strong> Before/after screenshots at both widths, no unintended overflow, keyboard navigation works, and generate/edit/save/reopen still works. A distinctive brand is not achieved by blindly banning purple, cards or a particular font. Make choices that serve the product.</p>
+<h2>3. Copyable agent prompts</h2>
+<p>Use one prompt at a time. Read the output and satisfy its checkpoint before continuing. Short versions appear on slides; these are the full instructions.</p>
+<h3>Prompt 01: Environment and connection check</h3>
+<pre><code class="language-text">Inspect this repository before changing it. Read AGENTS.md, package.json, the lockfile, framework configuration, database schema, authentication code, storage code and deployment configuration. Identify the package manager and supported Node version. Check which design skills, Supabase tools and Vercel tools are actually available. Do not assume installation means authentication succeeded.
+Return: current framework/runtime; routes; D1 bindings and tables; object storage; current identity provider; environment variable NAMES only; existing libraries; exact local build/test commands; current Git status. Do not read or print secret values or customer records.
+Confirm the intended Supabase project and Vercel team/project using a read-only tool call. For project-scoped Supabase MCP, verify tables or project URL rather than requiring account-level list-projects tools. If unavailable, identify the missing connection and continue the local audit.
+Create MIGRATION-PLAN.md with ordered checkpoints for design, backup, schema, identity, data, files, runtime, preview and cutover. Do not change the database or deploy.
+</code></pre>
+<h3>Prompt 02: Install the design skill and missing libraries</h3>
+<pre><code class="language-text">Check the official Impeccable README and the installed agent&#39;s supported skill mechanism. Install Impeccable for this project using its documented installer, selecting only the coding agent I am using. Explain any hook trust prompt so I can review it. Reload the agent if necessary, then verify that the skill appears. Do not claim it is available until the skill can be found.
+Inspect components.json and package.json. Reuse the existing component system and icon library. If shadcn/ui is already configured, do not initialize it again. Add only the components needed for our planned editor redesign. Add Motion only if a specific interaction needs it. Use the repository&#39;s package manager, review the lockfile changes and run the existing build. Report what was added and how each addition will be used.
+</code></pre>
+<h3>Prompt 03: Design audit and direction</h3>
+<pre><code class="language-text">Use the installed Impeccable design skill to audit Content Studio in the browser. The audience is a busy founder editing LinkedIn and X drafts. The main task is brief -&gt; generate -&gt; edit -&gt; save -&gt; reopen. Inspect the actual app at 390px and 1440px wide, including empty, loading, error and saved states.
+Rank five specific design problems by their effect on this task. Cite the route or component and screenshot evidence. Distinguish hierarchy, spacing, typography, content and interaction issues. Avoid treating a particular font or color as automatically bad.
+Propose two coherent visual directions, then recommend one. Use references only for principles, not copied branding. Our proposed direction is an editorial workspace: warm neutral background, dark green text, terracotta primary action, compact draft list, dominant writing area and useful status feedback. Create DESIGN.md with exact tokens, component rules, mobile behavior and a list of approved assets. Do not change the implementation yet.
+</code></pre>
+<h3>Prompt 04: Implement one deliberate redesign</h3>
+<pre><code class="language-text">Implement the selected direction in DESIGN.md on the draft editor and draft list. Preserve the existing generate, edit, save, refresh and reopen behavior. Give the writing editor the strongest hierarchy and make Save draft the clear primary action. Use realistic sample content, concise labels and one consistent icon family. Apply shared tokens instead of isolated color or spacing overrides.
+At 390px, use a single-column flow and an accessible draft picker. At 1440px, use the agreed list/editor composition. Include visible focus, labels, validation, loading, empty, unsaved, saved and failure states. Respect reduced-motion preferences and avoid animation that delays work.
+Capture before/after screenshots at both widths, run the relevant existing checks, and exercise the complete draft workflow. Report concrete improvements and any behavior regression. Do not change data access or authentication in this pass.
+</code></pre>
+<h3>Prompt 05: Source backup and schema inventory</h3>
+<pre><code class="language-text">Prepare a migration rehearsal from the real source environment. Confirm whether D1 is owned in my Cloudflare account or managed by Sites. Confirm the exact source database and environment before exporting. Use documented authorized export access only. A local .wrangler/state database is not a production backup. If managed-source export is unavailable, stop the real migration at that dependency and use a clearly labeled synthetic fixture for the classroom rehearsal.
+Create a private backup outside Git with schema, data export, export time, source identifier, checksums, row counts and an object-storage manifest. Test restoration into a disposable local database. Inspect SQLite types, actual value formats, keys, indexes, CHECK constraints and dependencies. Do not run the SQLite dump against Postgres.
+Create a per-table and per-column mapping. Preserve draft IDs and content, identify owner mappings, convert timestamps with explicit units/timezone, and flag invalid or ambiguous values. Include generation_requests and draft_images. Decide how to retain or expire operational request ledgers without replaying paid requests. Report blockers and the proposed import order.
+</code></pre>
+<h3>Prompt 06: Postgres schema and ownership rules</h3>
+<pre><code class="language-text">Using the reviewed mapping, write versioned Postgres migrations for a disposable Supabase staging project. Preserve every required field and relationship, including owner indexes, unique keys, CHECK constraints and draft/image relationships. Keep existing draft IDs as text unless an audited reason requires conversion. Resolve timestamp formats explicitly.
+Use Supabase Auth for the workshop target. Map each trusted legacy owner ID to a verified auth.users UUID through a private migration mapping. Do not infer ownership from a display name or an unverified email, and do not transfer ChatGPT passwords or sessions. Quarantine unresolved rows. Document a verified account-claim or administrator reconciliation procedure before real cutover.
+Enable RLS on all exposed tables. For drafts, authenticated users can select, insert, update and delete only their own rows. Updates must check both existing ownership and resulting ownership. Create only necessary grants. Keep generation admission and migration maps server-only, with no public Data API access. Review the SQL before applying it to the confirmed staging project. Produce A/B-user and signed-out test cases.
+</code></pre>
+<h3>Prompt 07: Transform, import and reconcile</h3>
+<pre><code class="language-text">Create a repeatable migration script that reads the private D1 export or restored SQLite database and writes validated UTF-8 CSV or parameterized Postgres inserts. Do not use search-and-replace to translate the SQL dump. Treat all row contents as data. Define null, empty-string, boolean, JSON and timestamp handling explicitly. Preserve stable IDs and text including commas, quotes, line breaks and Unicode.
+Import into the confirmed Supabase staging project in dependency order, using a protected server-side migration credential. Never expose that credential to the browser or logs. Make retries safe with a recorded migration run ID and an explicit duplicate/conflict policy; never silently overwrite a newer row. Use a transaction when practical and fail on rejected records.
+Produce a reconciliation report: source/target counts per table and mapped owner, IDs, duplicate IDs, orphan links, nulls, timestamp ranges, canonical content hashes and rejected rows. Reset sequences only where integer identities were retained. Record any normalization before comparing hashes. Run the import again on a fresh disposable target to prove reproducibility. Do not proceed while unexplained mismatches remain.
+</code></pre>
+<h3>Prompt 08: Move image files and preserve privacy</h3>
+<pre><code class="language-text">Inventory all referenced image objects in the source bucket. Database rows contain metadata and object keys; they are not the file bytes. Copy authorized source objects to a private Supabase Storage bucket using a resumable manifest with old key, new key, verified owner, byte count, content type and checksum. Use an ownership-aware destination path such as &lt;auth-user-uuid&gt;/&lt;image-id&gt;. Do not assume an admin upload automatically sets end-user ownership.
+Update image metadata only after each copy is verified. Add storage policies that restrict the bucket and authenticated user&#39;s path, or an equivalently reviewed ownership model. Serve images through authenticated access or short-lived signed URLs. Test owner A, owner B, signed-out access, missing files and expired URLs. Preserve image-generation idempotency and ensure a retry cannot create an extra paid generation. Do not delete source files during rehearsal or cutover.
+</code></pre>
+<h3>Prompt 09: Port the app to the target runtime</h3>
+<pre><code class="language-text">Port this Sites/Vinext/Worker application to standard Next.js on Vercel in an isolated branch or checkout. Inspect existing routes first. Replace Worker-only imports, env.DB and R2 bindings, the D1 Drizzle driver, Sites authentication headers and Sites-specific build/start scripts. Preserve business behavior, UI and API contracts where possible. Treat caller-supplied oai-authenticated-user-* headers as untrusted outside the Sites gateway.
+Use @supabase/supabase-js and the current @supabase/ssr Next.js integration for browser/server clients and session refresh. Validate identity on the server with the documented method. Use a user-scoped client for ordinary draft CRUD so RLS applies. Keep administrative migration credentials separate. Port the generation admission ledger with atomic reservation and uniqueness guarantees, not an in-memory map. Keep model keys server-only and verify all provider environment variable names against the source.
+Update framework scripts/configuration deliberately, add safe .env.example names, generate database types, and test the Next.js production build. Replace or adapt Worker integration tests to exercise the target runtime. Report every platform dependency that remains unresolved.
+</code></pre>
+<h3>Prompt 10: Verify authentication and migrated workflows</h3>
+<pre><code class="language-text">Against the Supabase staging project, test the application through its actual browser and API paths using two dedicated test users. User A must create, generate, edit, save, refresh and reopen a draft and its image. User B must not read, update, delete or attach A&#39;s draft/image even by guessing IDs or bypassing the UI. Signed-out requests must fail safely.
+Test forged ownership fields, ownership-changing updates, session expiry, sign-out, failed network requests and a repeated generation request. Retry must not duplicate a paid model/image call. Check the request ledger, logs and data state with redacted evidence. Do not rely on a database-admin query to prove RLS; exercise authenticated user roles.
+Run typecheck, lint, relevant automated tests and the production build using the repository&#39;s actual scripts. Fix failures, rerun affected checks and return PASS, FAIL or BLOCKED for each workflow.
+</code></pre>
+<h3>Prompt 11: Create the Vercel preview</h3>
+<pre><code class="language-text">Prepare a Vercel preview deployment for the reviewed branch. Confirm the GitHub repository, branch, Vercel team/project, root directory, standard Next.js framework preset and Node version. Use the connected Vercel tools or documented Git import flow. Configure Preview environment variables for Supabase STAGING only, using the project&#39;s environment variable names. Set secrets through the platform, never paste values in chat or commit them.
+Configure Supabase Auth redirects for the exact preview callback URL or a narrowly scoped preview pattern. Ensure the preview&#39;s email links return to preview. Confirm the intended access setting. Deploy the reviewed commit and report the exact URL, commit and target project. Inspect build and runtime logs, then run the same two-user and draft/image workflow checks on that URL. A successful build is not a completed browser check. Do not promote to production yet.
+</code></pre>
+<h3>Prompt 12: Production cutover and recovery plan</h3>
+<pre><code class="language-text">Prepare a reviewable production cutover runbook using the verified rehearsal. Name the source/target environments, reviewed application commit, backup, owner mapping and data reconciliation evidence. Confirm production secrets, callback URL, domain and application access policy. Define the write-freeze window and the exact point the target becomes writable.
+Before cutover, stop source writes and wait for in-flight generation/image requests to settle. Take the final export and object delta, rerun the proven migration, reconcile data and verify private access. Route traffic to the reviewed Vercel production release only after those gates pass. Resume writes on one system, then verify sign-in, draft create/edit/save/reopen, images and generation on the production URL.
+Define rollback separately for application and data. Before target writes, traffic can return to the frozen source after validation. After target writes, freeze again, preserve the target delta and reconcile it before routing back; a Vercel rollback does not restore the database. Keep the source and backups until the agreed retention window ends. Present the concrete plan and any destructive steps for approval before executing production cutover.
+</code></pre>
+<h2>4. Migration command examples</h2>
+<p>These commands are teaching examples. Substitute audited names and paths, use the approved source/target, and keep data exports outside Git. Never run a destructive migration because a sample says to.</p>
+<h3>D1 export under your Cloudflare account</h3>
+<p>Use the installed Wrangler version in the source project. Create the private backup directory first. Verify the source account/database. Export may block other database requests; schedule appropriately. Virtual-table export limitations may require a separate plan that preserves the original source.</p>
+<pre><code class="language-bash">npx wrangler d1 export DB_NAME --remote --output=./private-backup/d1.sql
+</code></pre>
+<p>For Sites-managed databases, first confirm authorized platform export access. Your personal Cloudflare credentials may not expose the managed resource. If access is unresolved, use synthetic data for the lab and record that the real migration is blocked. Do not claim a local .wrangler/state export contains production rows.</p>
+<h3>Restore SQLite for inspection</h3>
+<p>Use an installed sqlite3 client and a fresh disposable filename. The restore is a compatibility check, not the Postgres import:</p>
+<pre><code class="language-bash">sqlite3 ./private-backup/rehearsal.sqlite &lt; ./private-backup/d1.sql
+sqlite3 ./private-backup/rehearsal.sqlite &#39;PRAGMA integrity_check;&#39;
+sqlite3 ./private-backup/rehearsal.sqlite &#39;SELECT count(*) FROM drafts;&#39;
+</code></pre>
+<p>Verify every required table and index. Transform through a script that understands the source values. Do not translate SQLite SQL with blind text replacements. Small prepared CSV files can be imported through Supabase&#39;s Table Editor; repeatable larger imports should use a script or Postgres COPY tooling.</p>
+<h3>Repeatable Postgres application</h3>
+<p>Use the project&#39;s Connect dialog to choose the appropriate direct/session connection for migration tooling. Configure a private psql service called workshop_staging, with credentials stored outside Git. The exact connection depends on network support. Use a reviewed generated migration file:</p>
+<pre><code class="language-bash">psql &#39;service=workshop_staging&#39; -v ON_ERROR_STOP=1 -f migrations/001_schema.sql
+</code></pre>
+<p>Inside psql, an illustrative import into a reviewed staging table:</p>
+<pre><code class="language-sql">\copy migration_staging.drafts FROM &#39;./private-backup/drafts.csv&#39; WITH (FORMAT csv, HEADER true);
+</code></pre>
+<p>Create the staging table to match the audited columns first. Transform and validate before merging into application tables. A missing CSV value, an empty string and SQL NULL can differ; configure serialization explicitly. Keep migration staging outside exposed API schemas. Import parents before dependent records and preserve keys. Record a run ID and handle conflicts explicitly. For serverless direct SQL at runtime, choose the documented pooling method and compatible driver settings. The main workshop uses Supabase user-scoped APIs for draft CRUD so RLS is enforced.</p>
+<h2>5. Ownership policy teaching example</h2>
+<p>This example intentionally uses a new disposable table, workshop_drafts. It demonstrates policies only. The actual Content Studio migration must preserve all audited fields, relationships and constraints; do not replace it with this reduced schema. Existing Supabase Auth users are required for owner_id values. Apply to staging after review.</p>
+<pre><code class="language-sql">create table public.workshop_drafts (
+  id text primary key,
+  owner_id uuid not null references auth.users(id),
+  body text not null,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+create index workshop_drafts_owner_updated
+  on public.workshop_drafts(owner_id, updated_at desc);
+
+alter table public.workshop_drafts enable row level security;
+revoke all on public.workshop_drafts from anon, authenticated;
+grant select, insert, update, delete
+  on public.workshop_drafts to authenticated;
+
+create policy &quot;read own&quot; on public.workshop_drafts
+  for select to authenticated
+  using ((select auth.uid()) = owner_id);
+create policy &quot;insert own&quot; on public.workshop_drafts
+  for insert to authenticated
+  with check ((select auth.uid()) = owner_id);
+create policy &quot;update own&quot; on public.workshop_drafts
+  for update to authenticated
+  using ((select auth.uid()) = owner_id)
+  with check ((select auth.uid()) = owner_id);
+create policy &quot;delete own&quot; on public.workshop_drafts
+  for delete to authenticated
+  using ((select auth.uid()) = owner_id);
+</code></pre>
+<p>Set owner_id from verified server identity or a user-scoped insert checked by RLS. Never trust a caller-supplied owner ID alone. Implement updated_at changes deliberately. Test A&#39;s valid operations, B&#39;s guessed-ID operations, signed-out access and attempted ownership transfer through actual authenticated APIs. Admin credentials bypass these policies.</p>
+<p>The legacy owner map belongs in a private, non-exposed migration schema. Verify the old account and new account before linking them. For a class fixture, pre-map only instructor-controlled test users. For real users, use a verified claim flow or documented administrator reconciliation. Unresolved rows remain quarantined rather than assigned by guesswork.</p>
+<p>Operational ledgers need separate privileges and atomic server-side operations. Port unique keys, reservation logic and idempotency. Do not give browser users general access to generation_requests or allow them to alter their own usage limits.</p>
+<h2>6. Private image migration</h2>
+<p>Use a manifest with old key, new key, verified owner, bytes, content type, checksum and copy status. Copy actual bytes through authorized source access. A D1 export carries metadata only. Keep the target bucket private; create policies for the intended operations with bucket and owner/path checks. Administrative upload does not prove end-user ownership. Verify the resulting file before linking its metadata. Short-lived signed URLs still need correct authorization when issued. A valid signed URL is a bearer link: anyone who holds it can access that object until it expires. Test signed-out direct access separately from signed-link access; use authenticated delivery if access must be rechecked on every request. Check missing objects and expired URLs. Never make the bucket public to work around a failed ownership check.</p>
+<h2>7. Vercel deployment steps</h2>
+<ol>
+<li>Finish the standard Next.js runtime port and test its production build. A next dependency inside a Vinext project is not proof that its scripts already deploy as standard Next.js.</li>
+<li>Push the reviewed branch to the authorized GitHub repository. Import it into the intended Vercel team/project and select the correct project root.</li>
+<li>Confirm framework preset, build command and supported Node version. Remove stale Worker output-directory overrides only after reviewing their purpose.</li>
+<li>Set Preview variables to Supabase staging. Set Production variables separately. Keep provider keys and administrative credentials server-only. Browser configuration uses the Supabase URL and publishable key with RLS.</li>
+<li>Configure Supabase Auth site URL and redirect allowlist for the correct environment. Prefer exact production callback URLs. Restrict any preview wildcard to your own deployment namespace.</li>
+<li>Deploy preview, inspect logs and record the exact URL/commit. Test the deployed browser flow, not just the build result.</li>
+<li>Review production cutover with the final backup, reconciliation, domain/configuration changes and rollback plan. Freeze source writes for final migration. After promotion, test the exact production URL and resume writes on one system.</li>
+</ol>
+<p>CLI alternative, if the Vercel CLI is installed and the project linkage has been reviewed:</p>
+<pre><code class="language-bash">vercel login
+vercel link
+vercel
+# Only after the production cutover gates and authorization:
+vercel --prod
+</code></pre>
+<p>Git-based deployment is the primary classroom path. CLI deployments use local source, so verify the checkout is clean and matches the reviewed commit before using this alternative. Redeploy after relevant environment changes so the intended configuration reaches the deployment. Vercel access protection and application authentication serve different purposes; confirm the intended audience and private-data access separately.</p>
+<h2>8. Reconciliation and release record</h2>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Evidence to record</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Source backup</td>
+<td>Source ID, timestamp, checksum, restore result</td>
+<td>Not tested</td>
+</tr>
+<tr>
+<td>Schema</td>
+<td>Reviewed migration files, keys and constraints</td>
+<td>Not tested</td>
+</tr>
+<tr>
+<td>Owners</td>
+<td>Verified mappings and unresolved-row report</td>
+<td>Not tested</td>
+</tr>
+<tr>
+<td>Rows</td>
+<td>Counts/IDs by table and mapped owner</td>
+<td>Not tested</td>
+</tr>
+<tr>
+<td>Content</td>
+<td>Canonical hash comparison and normalization rules</td>
+<td>Not tested</td>
+</tr>
+<tr>
+<td>Relationships</td>
+<td>Duplicate/orphan/null checks</td>
+<td>Not tested</td>
+</tr>
+<tr>
+<td>Files</td>
+<td>Manifest, checksum, bytes, access checks</td>
+<td>Not tested</td>
+</tr>
+<tr>
+<td>Repeatability</td>
+<td>Fresh-target rehearsal result</td>
+<td>Not tested</td>
+</tr>
+<tr>
+<td>Identity + RLS</td>
+<td>A/B/signed-out and owner-transfer results</td>
+<td>Not tested</td>
+</tr>
+<tr>
+<td>App behavior</td>
+<td>Generate/edit/save/refresh/reopen evidence</td>
+<td>Not tested</td>
+</tr>
+<tr>
+<td>Idempotency</td>
+<td>Retried request does not duplicate paid call</td>
+<td>Not tested</td>
+</tr>
+<tr>
+<td>Preview</td>
+<td>Exact URL, project, commit and logs</td>
+<td>Not tested</td>
+</tr>
+<tr>
+<td>Production</td>
+<td>Write freeze, final delta, URL and smoke test</td>
+<td>Not tested</td>
+</tr>
+<tr>
+<td>Recovery</td>
+<td>Source retained; target-delta reconciliation plan</td>
+<td>Not tested</td>
+</tr>
+</tbody></table>
+<p>Use PASS, FAIL, BLOCKED or NOT APPLICABLE. Explain each exclusion. A returned URL does not establish that the workflow succeeded. An application rollback is not a database rollback. After new target writes, preserve and reconcile that delta before sending traffic back.</p>
+<h2>Slide map</h2>
+<ol>
+<li>Design with intent. Migrate with confidence.</li>
+<li>The working session</li>
+<li>Plugins, skills and libraries</li>
+<li>Before opening the agent</li>
+<li>Connect Supabase and Vercel</li>
+<li>Install the design skill</li>
+<li>Use the smallest useful design stack</li>
+<li>Prompt 01: inspect the actual project</li>
+<li>A purposeful workspace</li>
+<li>Give the agent a design brief</li>
+<li>A concrete starting token system</li>
+<li>Prompt 04: redesign one complete flow</li>
+<li>Design the states people actually see</li>
+<li>Design review lab</li>
+<li>The target architecture</li>
+<li>What Content Studio actually needs moved</li>
+<li>Choose the correct D1 export path</li>
+<li>Export, restore and transform</li>
+<li>SQLite to Postgres: explicit decisions</li>
+<li>Schema migration and owner mapping</li>
+<li>RLS is a behavior you must test</li>
+<li>The ownership policy pattern</li>
+<li>Prompt 07: rehearse a repeatable import</li>
+<li>Data reconciliation before cutover</li>
+<li>Images require a separate migration</li>
+<li>Replace the platform dependencies</li>
+<li>Prompt 09: port and verify the app</li>
+<li>Environment variables on Vercel</li>
+<li>Deploy the reviewed branch to Vercel</li>
+<li>Prompt 11: validate the preview URL</li>
+<li>The live smoke test</li>
+<li>Production cutover sequence</li>
+<li>Application rollback and data rollback</li>
+<li>Your workshop deliverables</li>
+</ol>
+<h2>Technical references</h2>
+<p>Official references checked 24 September 2026. Recheck installation commands and account-specific options before a later class.</p>
+<ul>
+<li><a href="https://github.com/pbakaus/impeccable">impeccable</a></li>
+<li><a href="https://ui.shadcn.com/docs/installation/next">shadcn</a></li>
+<li><a href="https://motion.dev/docs/react-installation">motion</a></li>
+<li><a href="https://supabase.com/docs/guides/ai-tools/mcp">supamcp</a></li>
+<li><a href="https://vercel.com/docs/agent-resources/vercel-mcp">vercelmcp</a></li>
+<li><a href="https://developers.cloudflare.com/d1/best-practices/import-export-data/">d1</a></li>
+<li><a href="https://supabase.com/docs/guides/database/import-data">import</a></li>
+<li><a href="https://supabase.com/docs/guides/database/postgres/row-level-security">rls</a></li>
+<li><a href="https://supabase.com/docs/guides/auth/server-side/creating-a-client?queryGroups=framework&framework=nextjs">auth</a></li>
+<li><a href="https://supabase.com/docs/guides/getting-started/api-keys">keys</a></li>
+<li><a href="https://supabase.com/docs/guides/storage/security/access-control">storage</a></li>
+<li><a href="https://supabase.com/docs/guides/auth/redirect-urls">redirect</a></li>
+<li><a href="https://vercel.com/docs/deployments/environments">env</a></li>
+<li><a href="https://vercel.com/docs/frameworks/full-stack/nextjs">next</a></li>
+<li><a href="https://supabase.com/docs/guides/database/connecting-to-postgres">connect</a></li>
+</ul>
+</main><script>document.querySelectorAll('pre').forEach(pre=>{const b=document.createElement('button');b.className='copy';b.textContent='Copy';b.onclick=async()=>{const text=pre.querySelector('code').innerText;try{await navigator.clipboard.writeText(text);b.textContent='Copied'}catch{const r=document.createRange();r.selectNodeContents(pre.querySelector('code'));const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected: copy with keyboard'}};pre.after(b)})</script></html>
