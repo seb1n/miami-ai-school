@@ -1,79 +1,94 @@
 # Mobile app master prompt
 
-Build a small app around one useful task. First decide whether you need a phone-friendly web app or a native iOS/Android app. This prompt supports both and keeps their testing and release paths separate.
+**Revised September 28, 2026 after reviewing the actual Codex mobile app project and build conversation.**
 
-**Example brief:** A habit tracker for busy professionals. Create a habit, log today's progress, and see history. A reading goal might be 30 minutes per day, with a clearly labeled action that adds 5 minutes. Start without payments, social features, or notifications.
+This prompt follows the Cobalt habit-app workflow demonstrated in class: **Impeccable design options → choose a direction → clickable frontend MVP → Supabase database → Vercel web deployment → user authentication and cloud tracking**. Customize the idea and features while keeping that staged approach.
 
-Replace the bracketed fields, then copy this entire block. See the [start guide](README.md) for setup.
+The demonstrated app uses **React, TypeScript, Vite, Tailwind CSS and shadcn**, with Supabase and Vercel added afterward. It is an iPhone-first responsive web app. Expo was discussed as a later step for native mobile development; it was not the framework used for this classroom build.
+
+**Class example:** A habit app with counted activities such as 40 morning push-ups and all-day commitments such as staying smoke-free. The selected design was Cobalt Coach, with Today, Progress and You screens. Your project can use a different purpose, name and visual direction.
+
+Replace the bracketed fields, then copy the entire block. Read the [class build notes](class-build-notes.md) for the source-backed sequence and the [start guide](README.md) for setup.
 
 ```text
-You are my product engineer and design partner for a Miami AI School project. Help me turn the brief below into a small, working app. Use plain English, make reasonable reversible decisions, and finish each authorized stage with evidence.
+You are my product engineer and design partner in Codex. Help me build a mobile-first application using the staged workflow demonstrated in Miami AI School. Start with design and a clickable frontend, then connect real services. Keep the first version simple and show what actually works at each stage.
 
 MY PROJECT
-- App name: [name]
-- Audience and problem: [who it helps and what they struggle with]
-- Main user journey: [start → action → useful result]
+- App name and idea: [name and one-sentence purpose]
+- Audience and problem: [who it helps and why]
+- Main journey: [start → action → useful result]
 - Three essential features: [feature 1; feature 2; feature 3]
-- Not in version one: [excluded features]
-- Target: [native iOS/Android / mobile web / Help me choose]
-- Sign-in and saved data: [what each user needs to save, or None]
-- Device capabilities: [camera, notifications, offline use, or None]
-- Brand and design references: [assets, colors, links, or Help me choose]
-- Existing project: [folder/repository or New project]
-- Phone available for testing: [iPhone / Android / neither]
+- Out of scope: [features to leave for later]
+- Starting folder or repository: [New project / existing project]
+- Phone experience: [iPhone first / Android first / both]
+- Design references and supplied assets: [references or Help me choose]
+- User data to save: [records and progress, or None]
 - GitHub destination: [repository and branch, or Not selected]
-- Supabase destination: [authorized organization/project or Not selected]
-- Web hosting destination: [Vercel team/project or Not selected]
-- Authorized release scope: [local only / push to named branch / deploy preview]
-- Budget and other constraints: [limits, accessibility, deadline]
+- Supabase destination: [authorized organization/project, or Not selected]
+- Vercel destination: [team/project, or Not selected]
+- Email provider: [existing provider or Not configured]
+- Authorized stages: [local prototype / backend setup / GitHub push / preview deployment / account integration]
+- Budget and constraints: [limits]
 
 1. INSPECT AND PLAN
-Read the project instructions and existing files before editing. Preserve uncommitted work. Identify the actual stack, package manager, scripts, and available tools. If the folder is empty, say so. Check current documentation through Context7, resolving the library first; use official documentation if it is unavailable. Record the versions you choose and commit the lockfile. Never pretend a missing plugin is installed or connected.
+Read the folder and applicable project instructions before editing. Preserve unrelated work. Identify the actual scripts, package manager and available integrations. Start from an empty folder only when this is a new project.
 
-For native iOS/Android, propose Expo, React Native and TypeScript, with Supabase when accounts or shared persistence are needed. For mobile web, propose a responsive web stack compatible with Vercel, using React/TypeScript and a suitable framework. Preserve a suitable existing stack. Do not rewrite a working web app into native code without explaining the scope and obtaining my platform decision.
+Use React and TypeScript with Vite, Tailwind CSS and shadcn for this mobile-web classroom path. Use only the components needed; the demonstrated first build used Button, Input, Textarea and Dialog. Preserve a suitable existing implementation. Do not introduce Expo, React Native or Next.js just because the project is called a mobile app. Native conversion is a later, separately selected task.
 
-Explain which requirements determine the choice. Expo Go runs compatible Expo projects; it does not run an arbitrary website as a native app. Identify any dependency that requires a development build. Native distribution and web hosting are separate release paths.
+Use Context7 to resolve libraries and check current documentation; use official documentation if unavailable. Verify current installation commands and compatible versions, preserve a lockfile, and do not invent scripts. Confirm that installed tools are available and connected before claiming to use them.
 
-Save docs/project-brief.md with the platform choice, screens, data model, three essential features, exclusions, acceptance cases, dependencies, and staged plan. Ask only questions that materially affect the build. Present the plan for approval before implementing.
+Write PRODUCT.md with the purpose, audience, mobile-web platform, main journey, scope, assumptions and acceptance checks. Present a concise staged plan. Ask only questions that materially affect the result. Obtain plan approval, then complete each authorized stage without asking again for routine work.
 
-2. DESIGN THE MAIN JOURNEY
-Use Impeccable if available. Otherwise state the limitation and define a design system directly. Show two meaningfully different screen compositions for the core journey and let me choose. Then document typography, colors, spacing, navigation, reusable controls, and interaction states in docs/design-system.md. Preserve the chosen identity.
+2. DESIGN OPTIONS AND SELECTION
+Use the project-installed Impeccable skill. If missing, explain the setup needed and continue product planning; do not claim the skill ran. Produce materially different visual directions for the same main screen. The class compared four: Playful Blocks, Cobalt Coach, Daily Departure and Native Calm. Use those as evidence of the range, not as mandatory styles for every app.
 
-Make controls understandable without an explanation. Distinguish a target, its unit, and the amount added by each tap. For example, show “Daily goal: 30 minutes” and “Add 5 minutes.” Let the user edit or undo an entry. Avoid ambiguous labels such as “amount per tap” without context. Adapt this principle to my actual product.
+Show the options, recommend one and let me select or delegate the choice. Record the chosen design in DESIGN.md and Impeccable's supported design artifacts. Include color, typography, spacing, controls, navigation and interaction states. Preserve the chosen identity through implementation.
 
-Include empty, loading, error, success, and unsaved states. Account for safe areas, readable text, touch targets, screen-reader labels, the on-screen keyboard, and small screens. Build an interactive interface with clearly labeled sample data first. Let me review the workflow before connecting the backend.
+For the habit example, distinguish counted progress from an all-day commitment. A push-up action adds a defined number of reps; an on-track check-in does not mean the whole smoke-free day is complete. Make the target, unit and increment understandable. Use labels such as “Daily goal: 30 minutes” and “Add 5 minutes.”
 
-3. IMPLEMENT AND CONNECT DATA
-Build in small working slices. Create project-specific AGENTS.md, README.md, a safe .env.example, and appropriate ignore rules using the actual commands and structure.
+3. CLICKABLE FRONTEND ONLY
+Build the selected design as an interactive mobile-web MVP before adding a backend. Use clearly labeled sample data and browser-local storage for this stage. State that the data stays in that browser and is not tied to an account or synchronized to the cloud. Installing Supabase packages is not backend integration.
 
-If accounts are required, use Supabase Auth with a documented sign-in method. Verify session persistence, sign-out and the correct callback or deep-link behavior for the chosen platform. Keep privileged keys and any model credentials on the server. A client publishable key is not permission to bypass data access rules.
+For a habit app, implement Today, Progress and You, including counted goals and increments, undo, on-track/setback check-ins, notes, explicit day completion, create/edit/archive/restore, and weekly/daily progress. Adapt the screens and behavior to my approved brief if building a different product.
 
-Give each private record a verified owner. Use database migrations, least-privilege grants and RLS on exposed tables. Enforce ownership for create, read, update and delete, including preventing ownership changes. Protect private files if used. Do not trust client-supplied identity alone or use an administrative client to prove user isolation.
+Support local-calendar daily rollover and retain history. Keep prior target/unit values with historical entries so editing a goal does not rewrite past progress. Exclude notifications, social features, monetization and offline cloud sync unless explicitly selected.
 
-For a habit tracker, consider profiles, habits and habit_logs; choose the schema for the actual brief. Define local-day/timezone behavior, progress units, repeated-tap behavior and history. Make writes atomic where multiple records or concurrent actions must agree. Do not silently attach demo or local-only data to a signed-in account. Keep offline sync out of scope unless selected; if selected, define conflict and retry behavior explicitly.
+Make the app fill the phone browser, with safe-area spacing, clear touch targets, readable labels and working keyboard behavior. A desktop phone frame is optional presentation styling. Include empty, loading, error and confirmation states, visible focus and reduced motion.
 
-Show success only after persistence is confirmed. Preserve input after failures. Prevent accidental duplicate writes while allowing intentional repeated actions.
+Run the actual build and focused behavior tests. Open the browser and demonstrate the complete journey, refresh persistence, failure behavior and mobile/desktop layouts. Create README.md and project-specific AGENTS.md with real commands. Show the working frontend for review before backend integration.
 
-4. VERIFY ON THE TARGET PLATFORM
-Run the relevant static checks, tests and build using real project scripts. Add focused tests for important calculations, persistence and access boundaries.
+4. CREATE THE DATABASE AND PREPARE HOSTING
+When backend setup is authorized, confirm the correct Supabase organization and project. Use my authorized destination, not the instructor's account by default. Create or reuse the project and prepare migrations. For the habit example use profiles, habits and habit_logs, with stable IDs, verified owners, local dates and historical goal snapshots.
 
-Demonstrate the main journey: create → act → save → close/reopen → edit or undo. Test failed requests and empty states. With accounts, use users A and B plus signed-out access to confirm isolation, including guessed record IDs and ownership-changing updates.
+Apply least-privilege grants and row-level security for the actual access model, including read, insert, update and delete. Prevent ownership changes and logs attached to another user's habit. Use atomic writes when habit metadata and daily records must succeed together. Keep new-account data empty and separate from sample browser data.
 
-For native, start the documented Expo development server and provide its real connection instructions or QR code. Test on an available physical phone using Expo Go only if compatible; otherwise prepare the appropriate development build. Verify keyboard behavior, navigation, sign-in return, and reopening the app. If no phone or account access is available, mark those checks pending and give precise steps. A browser or simulator check does not prove physical-device behavior.
+Prepare Vercel for the Vite app: correct repository, root, build command, dist output and SPA routing where needed. Use browser-safe configuration names such as VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY. VITE_ variables are bundled into client code; never put privileged Supabase keys, model credentials or email-provider secrets there.
 
-For mobile web, test narrow and wide browser sizes, keyboard navigation and the actual phone browser when available. Keep web and native results separate.
+At this checkpoint report separately: database prepared, frontend still local or connected, hosting prepared, and deployed or not deployed. Created tables do not prove that the UI reads or writes them.
 
-5. SAVE AND PREPARE RELEASE
-Review the diff, check for secrets, and create a recoverable local commit. Push only within my authorized scope to the named repository and branch.
+5. SAVE AND DEPLOY THE REVIEWED WEB VERSION
+Review the diff, exclude credentials/private data, and create a recoverable commit. Push only to the authorized repository and branch. Confirm Vercel's GitHub connection, production branch and intended audience. Use staging services for previews.
 
-For mobile web, or a separately tested Expo web build, prepare Vercel with the correct project root, build settings, environment variables and Supabase redirects. Verify GitHub integration and the configured production branch. Use staging services for preview. Deploy a preview only when authorized, then test the real URL and persisted data.
+The class deployed the browser-local prototype before adding account integration. If I choose that checkpoint, clearly label its local-only storage. Otherwise proceed to account integration before releasing a cloud-enabled version. Never describe the prototype as a completed account-based application.
 
-For native, document the development-build and store-release requirements. A Vercel deployment hosts the web output, not an iOS or Android binary. Do not submit to an app store, purchase services or release to production without that specific authorization. Continue already authorized work without asking again.
+Deploy a preview only within my authorized scope. Production release requires explicit authorization for the reviewed candidate. Wait for deployment, match it to the source revision, and check the actual URL. Do not purchase services or change domains without authorization.
+
+6. ADD SIMPLE PER-USER AUTHENTICATION AND TRACKING
+When account integration is authorized, use Supabase Auth to add sign-up, sign-in, confirmation handling, session restoration, password recovery and sign-out. The demonstrated implementation used email/password. Keep the approved design and connect the UI to each user's own records.
+
+Use the configured email provider where suitable. Check its delivery restrictions rather than assuming any address can receive confirmation/reset emails. Do not disable confirmation to make a demo pass. Verify real email delivery and successful account flows separately from merely displaying those screens.
+
+Replace browser-local persistence with authenticated cloud reads and writes. Start new accounts empty. Do not silently upload sample habits or merge local records into an account. Clear account state when switching users. Show saved progress only after the database confirms the write; preserve previous state and explain retryable errors on failure. Keep privileged operations server-side and use user-scoped access for ordinary operations.
+
+Test users A and B plus signed-out access through actual application/API paths. Check guessed IDs, forged owners, ownership-changing updates and failed writes. Do not use an admin query to prove isolation. Demonstrate create → track → save → refresh → reopen → sign out → sign in again, plus archive/restore and history. Separate local fixtures from hosted checks. After an authorized update deployment, repeat the journey on its real URL.
+
+7. OPTIONAL LATER NATIVE STEP
+The classroom result runs in a mobile browser. If I later request a native app, first assess the React Native/Expo work, reusable logic, new UI and device requirements. Expo Go tests compatible Expo projects; it does not convert this Vite application by scanning a QR code. Use a development build when native dependencies require it. Native-device testing and app-store distribution are separate from this Vercel web deployment.
 
 HANDOFF
-Provide the working project location, actual run commands, selected stack, source commit, completed features, and evidence marked PASS, FAIL or BLOCKED. Distinguish local, simulator, physical-device, preview and production verification. Include actual URLs only when created and checked. List the smallest remaining steps. Never describe generated code or an untested feature as verified.
+Return the actual project path, commands, commit, completed stage, checked URL if any, and PASS/FAIL/BLOCKED evidence. Distinguish approved mockups, clickable frontend, browser-local persistence, database setup, connected accounts, deployed version, hosted verification and email delivery. Do not repeat historic test results as if rerun. List only the remaining steps required for my chosen stage.
 
-Start with the project inspection and plan.
+Start with project inspection and the plan.
 ```
 
-Technical distinctions are documented in [references](references.md). App-store release remains a separate step from this first build.
+See [technical references](references.md). This is a reusable version of the demonstrated build workflow, not a claim that another student project has already passed its checks.

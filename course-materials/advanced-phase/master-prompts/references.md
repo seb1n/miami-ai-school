@@ -14,12 +14,22 @@ The prompts combine commitments from the supplied class transcript with implemen
 | [Vercel Git deployments](https://vercel.com/docs/git) | Connect the repository and confirm Preview and Production branch behavior. Check the deployment associated with the intended source revision. |
 | [Impeccable](https://impeccable.style/) | Design skills support both new interfaces and improvements to existing ones. Verify availability in the selected coding agent before claiming to use them. |
 | [Context7 documentation](https://context7.com/docs/overview) | Retrieve current documentation for implementation decisions. Use the actual supported setup flow rather than the transcript's uncertain phonetic command. |
+| [Vite deployment guide](https://vite.dev/guide/static-deploy.html) and [environment variables](https://vite.dev/guide/env-and-mode.html) | The inspected classroom app builds with Vite to dist. Client-exposed VITE_ variables must not contain privileged secrets. |
 
-Expo, Supabase and Vercel guidance was also checked through Context7. React/TypeScript, Next.js for a fresh web app, and Expo for a native app are recommended starting choices in these prompts, not a claim that the transcript established every framework or package version.
+Expo, Supabase, Vercel and Vite guidance was also checked through Context7. The mobile prompt's React/TypeScript, Vite, Tailwind and shadcn stack comes from the actual project manifest and build conversation. Next.js remains a recommended default for a fresh website/web app or Content Studio. Expo is a future native-development option, not the framework used in the demonstrated habit app.
+
+## Original projects inspected
+
+The September 28 revision used the original Codex conversation's user requests and outcomes, plus PRODUCT.md, DESIGN.md, package.json, README.md, vercel.json, deployment notes, habit logic, cloud storage code and database migrations. These establish the user's design selection, frontend-only first build, Supabase preparation, initial web deployment and subsequent account integration. See [class build notes](class-build-notes.md) for the student-facing reconstruction.
+
+Content Studio was checked through its design/polish conversation and migration conversation, the original PRODUCT.md and package manifest, and the isolated Next.js target manifest and preview notes. Those sources establish the private founder scope, selected Margin Notebook layout, distinct save behaviors, Sites/D1/R2 source, and staged Supabase/Next.js/Vercel target. The prompt preserves that distinction and does not claim the migration is fully verified in production.
+
+Current source inspection does not revalidate live deployments or email configuration. Historical test and deployment results remain historical evidence. No code or service in either original application was changed by this documentation correction.
 
 ## Review scope
 
 - Matched the three prompt deliverables to the transcript commitments at 12:05–12:52 and 36:50–37:06.
+- Corrected the initially generic mobile prompt to match the actual Codex project, including frontend-only local storage before cloud integration.
 - Preserved the plan, design, interface testing, backend and release sequence described at 38:10–39:23.
 - Kept the existing Sites classroom path intact and linked the later migration workbook.
 - Included separate checks for data persistence, user isolation, live generation, device behavior and hosted operation where applicable.

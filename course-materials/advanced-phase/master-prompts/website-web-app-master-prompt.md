@@ -2,6 +2,8 @@
 
 Use this for a new website or web application, or to improve an existing one. The agent should add a database and sign-in only when your product needs them.
 
+This is the generic website counterpart to the two class builds. It carries forward their actual working method: initialize product/design context, compare and select a design, build a clickable interface, test it, connect the needed services, then release and verify. The class demonstrated React/Vite for the new mobile-web app and a Sites-to-Next.js migration for Content Studio; this prompt does not claim a third website was built. See [class build notes](class-build-notes.md).
+
 **Example brief:** A website for an independent consultant, with services, selected work, and a contact form. The main action is submitting an inquiry. No user accounts or payments in the first version. Use supplied work examples and leave missing claims as placeholders.
 
 Replace the bracketed fields, then copy this entire block. See the [start guide](README.md) for setup.
@@ -32,16 +34,16 @@ Read AGENTS.md, the existing source, package scripts, deployment settings and av
 
 Use Context7 to resolve and read current documentation for implementation choices. Fall back to official docs if needed. Record versions and retain a lockfile. Do not invent commands or repeat uncertain transcript commands.
 
-For a new web application, propose Next.js with TypeScript, Supabase when user data or authentication is required, GitHub for source history, and Vercel for hosting. This is a default recommendation, not a requirement to rewrite an existing site. For an informational site, keep the implementation simple and omit unused backend services.
+Use the class's established tools: React and TypeScript, Impeccable for design, appropriate Tailwind/shadcn components, GitHub for source history, Supabase when accounts/data are required, and Vercel for web hosting. For a simple browser application, React with Vite follows the mobile-web build. For server-backed generation or a Content Studio-style application, propose standard Next.js. Explain the choice from my requirements and preserve a suitable existing stack. For an informational site, keep the implementation simple and omit unused backend services.
 
-Save docs/project-brief.md with the audience, purpose, sitemap, main journey, content inventory, scope, data needs, dependencies, staged implementation and measurable acceptance cases. Identify missing copy or assets without inventing facts, customer logos, testimonials, prices or results. Ask only material questions and obtain plan approval before building.
+Save PRODUCT.md and docs/project-brief.md with the audience, purpose, sitemap, main journey, content inventory, scope, data needs, dependencies, staged implementation and measurable acceptance cases. Identify missing copy or assets without inventing facts, customer logos, testimonials, prices or results. Ask only material questions and obtain plan approval before building.
 
 2. DESIGN BEFORE BACKEND WORK
 Use Impeccable if installed and available. For an existing site, audit the current screens and main journey first. For a new site, develop two materially different visual compositions and let me select one. If Impeccable is unavailable, disclose that and prepare the same design decisions directly.
 
-Document the chosen typography, palette, spacing, layout, component patterns and interaction states in docs/design-system.md. Use my brand assets and preserve the selected direction. Keep one primary action clear. Avoid fabricated dashboards, decorative statistics and placeholder content that looks factual.
+Initialize product/design context using the installed Impeccable workflow. Document the chosen typography, palette, spacing, layout, component patterns and interaction states in DESIGN.md. Use my brand assets and preserve the selected direction. Keep one primary action clear. Avoid fabricated dashboards, decorative statistics and placeholder content that looks factual.
 
-Build and inspect the main screens with labeled sample data before wiring services. Include navigation, meaningful content hierarchy, readable mobile layouts, visible form labels, focus states, accessible contrast, and loading, empty, error and success states. Show the design for review before connecting the backend.
+Build and inspect a clickable frontend with labeled sample data before wiring services. If local storage helps demonstrate the workflow, disclose that it stays in the browser and is not an account-backed save. Include navigation, meaningful content hierarchy, readable mobile layouts, visible form labels, focus states, accessible contrast, and loading, empty, error and success states. Show the design for review before connecting the backend. Audit and polish the chosen screens while preserving working behavior.
 
 3. BUILD THE COMPLETE FIRST JOURNEY
 Implement small working slices. Set up README.md, project-specific AGENTS.md, safe environment placeholders and ignore rules. Use the actual project scripts.
