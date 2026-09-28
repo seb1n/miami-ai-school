@@ -6,6 +6,7 @@ Improve Content Studio's visual design, rehearse a D1-to-Supabase migration, and
 
 - [Read the workbook on GitHub](workbook.md).
 - [Download the HTML workbook](workbook.html), then open it in a browser for the formatted version and prompt copy buttons. GitHub shows the HTML source rather than hosting it as a webpage.
+- [Master prompts](../master-prompts/): standalone starting prompts for a mobile app, website/web app, and Content Studio, including the existing-project migration path.
 
 Both versions contain the same workbook, dated September 24, 2026, with 12 complete agent prompts, setup commands, a design brief, an illustrative ownership policy, migration checks and deployment instructions. The workbook accompanies the separate 34-slide presentation; the presentation files are not included in this upload.
 

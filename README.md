@@ -18,8 +18,9 @@ Course materials, presentations, hands-on exercises, example code, and project r
 - [Session 2: Build and publish Content Studio](course-materials/advanced-phase/session-02/)
 - [Session 2 presentation prompts](course-materials/advanced-phase/session-02/build-prompts.md)
 - [Design, migrate and deploy workshop](course-materials/advanced-phase/design-migrate-deploy/): website design, D1 to Supabase migration, and Vercel deployment.
+- [Master prompts](course-materials/advanced-phase/master-prompts/): customizable prompts for a mobile app, website/web app, and Content Studio.
 
-The repository includes Session 2 build prompts, an AGENTS.md teaching example, and the Design, Migrate and Deploy workbook with 12 detailed agent prompts. Additional course files and application code can be uploaded as they become ready.
+The repository includes Session 2 build prompts, an AGENTS.md teaching example, the Design, Migrate and Deploy workbook with 12 detailed agent prompts, and three standalone master prompts for new builds or existing projects. Additional course files and application code can be uploaded as they become ready.
 
 ## Adding materials
 
