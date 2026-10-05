@@ -1,0 +1,74 @@
+{
+  "id": "source-pack-demo-001",
+  "title": "Bright Harbor Lab fictional workshop source pack",
+  "source_facts": [
+    {
+      "id": "F01",
+      "text": "Bright Harbor Lab and every workshop detail in this pack are fictional classroom data.",
+      "source": "Instructor-authored synthetic source pack v1, F01"
+    },
+    {
+      "id": "F02",
+      "text": "The fictional workshop is hosted by Bright Harbor Lab.",
+      "source": "Instructor-authored synthetic source pack v1, F02"
+    },
+    {
+      "id": "F03",
+      "text": "The workshop is online on 15 October 2026 at 16:00 UTC and lasts 60 minutes.",
+      "source": "Instructor-authored synthetic source pack v1, F03"
+    },
+    {
+      "id": "F04",
+      "text": "Participants need no coding experience.",
+      "source": "Instructor-authored synthetic source pack v1, F04"
+    },
+    {
+      "id": "F05",
+      "text": "The exercise turns source notes into a newsletter, social posts, and a short text-led video.",
+      "source": "Instructor-authored synthetic source pack v1, F05"
+    },
+    {
+      "id": "F06",
+      "text": "The editorial advice is to choose one useful idea and check names, dates, times, and amounts against the source before reuse.",
+      "source": "Instructor-authored synthetic source pack v1, F06"
+    },
+    {
+      "id": "F07",
+      "text": "The teaching outline includes a human review of the content package before publication.",
+      "source": "Instructor-authored synthetic source pack v1, F07"
+    },
+    {
+      "id": "F08",
+      "text": "The exact practice call to action is: Read the practice newsletter.",
+      "source": "Instructor-authored synthetic source pack v1, F08"
+    },
+    {
+      "id": "F09",
+      "text": "No registration link, price, speaker, sponsor, attendance count, business outcome, or availability figure is supplied.",
+      "source": "Instructor-authored synthetic source pack v1, F09"
+    }
+  ],
+  "constraints": {
+    "newsletter_max_words": 220,
+    "linkedin_max_words": 130,
+    "x_max_chars": 240,
+    "video_seconds": 30
+  },
+  "brief": {
+    "audience": "Busy nontechnical professionals",
+    "tone": "Clear, useful, no hype",
+    "goal": "Explain one useful content habit and the fictional workshop",
+    "newsletter_target_words": [
+      140,
+      220
+    ],
+    "linkedin_target_words": [
+      80,
+      130
+    ],
+    "video_scene_count": 4,
+    "synthetic_label": "Synthetic practice example",
+    "cta": "Read the practice newsletter.",
+    "publishing": "disabled"
+  }
+}

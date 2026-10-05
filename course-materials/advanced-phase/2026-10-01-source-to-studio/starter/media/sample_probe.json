@@ -1,0 +1,11 @@
+{
+  "duration": 30.0,
+  "width": 1080,
+  "height": 1920,
+  "codec": "h264",
+  "frame_rate": "30/1",
+  "audio_streams": 0,
+  "voiceover": false,
+  "renderer": "fixed local FFmpeg template",
+  "bytes": 204447
+}

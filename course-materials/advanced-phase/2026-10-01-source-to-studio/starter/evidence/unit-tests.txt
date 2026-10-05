@@ -1,0 +1,44 @@
+test_bad_shape_then_tool_retry (test_agents_adapter.AdapterTests.test_bad_shape_then_tool_retry) ... ok
+test_completed_without_package_fails (test_agents_adapter.AdapterTests.test_completed_without_package_fails) ... ok
+test_custom_source_contract_rejected (test_agents_adapter.AdapterTests.test_custom_source_contract_rejected) ... ok
+test_duplicate_call_reuses_saved_result (test_agents_adapter.AdapterTests.test_duplicate_call_reuses_saved_result) ... ok
+test_failed_root_turn_never_passes (test_agents_adapter.AdapterTests.test_failed_root_turn_never_passes) ... ok
+test_idle_is_not_success (test_agents_adapter.AdapterTests.test_idle_is_not_success) ... ok
+test_no_key_no_network (test_agents_adapter.AdapterTests.test_no_key_no_network) ... ok
+test_no_raw_exception_secret_in_error (test_agents_adapter.AdapterTests.test_no_raw_exception_secret_in_error) ... ok
+test_real_agents_endpoint_contract_and_tools (test_agents_adapter.AdapterTests.test_real_agents_endpoint_contract_and_tools) ... ok
+test_sse_comments_multiline_and_done (test_agents_adapter.AdapterTests.test_sse_comments_multiline_and_done) ... ok
+test_subagent_completion_is_not_root_completion (test_agents_adapter.AdapterTests.test_subagent_completion_is_not_root_completion) ... ok
+test_submit_before_source_is_rejected (test_agents_adapter.AdapterTests.test_submit_before_source_is_rejected) ... ok
+test_unknown_tool_returns_error (test_agents_adapter.AdapterTests.test_unknown_tool_returns_error) ... ok
+test_http_cross_origin_no_token_and_path_denied (test_http.HTTPTests.test_http_cross_origin_no_token_and_path_denied) ... ok
+test_http_end_to_end_and_download (test_http.HTTPTests.test_http_end_to_end_and_download) ... ok
+test_case_07_x_boundary_240_241 (test_workflow.ExactFixtureCases.test_case_07_x_boundary_240_241) ... ok
+test_case_11_real_sample_metadata (test_workflow.ExactFixtureCases.test_case_11_real_sample_metadata) ... ok
+test_bad_human_finds_claim (test_workflow.WorkflowTests.test_bad_human_finds_claim) ... ok
+test_duplicate_source_ids (test_workflow.WorkflowTests.test_duplicate_source_ids) ... ok
+test_evals_locked_until_human_review (test_workflow.WorkflowTests.test_evals_locked_until_human_review) ... ok
+test_good_end_to_end (test_workflow.WorkflowTests.test_good_end_to_end) ... ok
+test_injected_source_is_data_not_execution (test_workflow.WorkflowTests.test_injected_source_is_data_not_execution) ... ok
+test_live_requires_explicit_paid_acknowledgement (test_workflow.WorkflowTests.test_live_requires_explicit_paid_acknowledgement) ... ok
+test_malformed_inputs (test_workflow.WorkflowTests.test_malformed_inputs) ... ok
+test_missing_unknown_citations (test_workflow.WorkflowTests.test_missing_unknown_citations) ... ok
+test_no_publish_route (test_workflow.WorkflowTests.test_no_publish_route) ... ok
+test_nonfinite_constraints_and_scene_duration (test_workflow.WorkflowTests.test_nonfinite_constraints_and_scene_duration) ... ok
+test_parallel_revision_allows_only_one_same_version (test_workflow.WorkflowTests.test_parallel_revision_allows_only_one_same_version) ... ok
+test_reloading_preserves_version_bound_state (test_workflow.WorkflowTests.test_reloading_preserves_version_bound_state) ... ok
+test_render_present_check_always_exists (test_workflow.WorkflowTests.test_render_present_check_always_exists) ... ok
+test_repair_rerun_resets_then_passes (test_workflow.WorkflowTests.test_repair_rerun_resets_then_passes) ... ok
+test_replay_cannot_regenerate_changed_source (test_workflow.WorkflowTests.test_replay_cannot_regenerate_changed_source) ... ok
+test_sample_cannot_mask_edited_script (test_workflow.WorkflowTests.test_sample_cannot_mask_edited_script) ... ok
+test_source_change_invalidates_all_approvals (test_workflow.WorkflowTests.test_source_change_invalidates_all_approvals) ... ok
+test_stale_review_hash_detected (test_workflow.WorkflowTests.test_stale_review_hash_detected) ... ok
+test_stale_version_rejected (test_workflow.WorkflowTests.test_stale_version_rejected) ... ok
+test_tool_failure_then_local_retry (test_workflow.WorkflowTests.test_tool_failure_then_local_retry) ... ok
+test_unsupported_quote_link_price_and_long_post (test_workflow.WorkflowTests.test_unsupported_quote_link_price_and_long_post) ... ok
+test_video_requires_actual_current_file (test_workflow.WorkflowTests.test_video_requires_actual_current_file) ... ok
+
+----------------------------------------------------------------------
+Ran 39 tests in 1.230s
+
+OK

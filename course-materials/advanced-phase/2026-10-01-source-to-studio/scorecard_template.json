@@ -1,0 +1,190 @@
+{
+  "status": "BLANK TEMPLATE",
+  "configuration": {
+    "source_version": null,
+    "instruction_version": null,
+    "model_id": null,
+    "run_mode": null
+  },
+  "results": [
+    {
+      "case_id": "CASE-01",
+      "version_A": {
+        "verdict": null,
+        "evidence": null
+      },
+      "version_B": {
+        "verdict": null,
+        "evidence": null
+      },
+      "notes": null
+    },
+    {
+      "case_id": "CASE-02",
+      "version_A": {
+        "verdict": null,
+        "evidence": null
+      },
+      "version_B": {
+        "verdict": null,
+        "evidence": null
+      },
+      "notes": null
+    },
+    {
+      "case_id": "CASE-03",
+      "version_A": {
+        "verdict": null,
+        "evidence": null
+      },
+      "version_B": {
+        "verdict": null,
+        "evidence": null
+      },
+      "notes": null
+    },
+    {
+      "case_id": "CASE-04",
+      "version_A": {
+        "verdict": null,
+        "evidence": null
+      },
+      "version_B": {
+        "verdict": null,
+        "evidence": null
+      },
+      "notes": null
+    },
+    {
+      "case_id": "CASE-05",
+      "version_A": {
+        "verdict": null,
+        "evidence": null
+      },
+      "version_B": {
+        "verdict": null,
+        "evidence": null
+      },
+      "notes": null
+    },
+    {
+      "case_id": "CASE-06",
+      "version_A": {
+        "verdict": null,
+        "evidence": null
+      },
+      "version_B": {
+        "verdict": null,
+        "evidence": null
+      },
+      "notes": null
+    },
+    {
+      "case_id": "CASE-07",
+      "version_A": {
+        "verdict": null,
+        "evidence": null
+      },
+      "version_B": {
+        "verdict": null,
+        "evidence": null
+      },
+      "notes": null
+    },
+    {
+      "case_id": "CASE-08",
+      "version_A": {
+        "verdict": null,
+        "evidence": null
+      },
+      "version_B": {
+        "verdict": null,
+        "evidence": null
+      },
+      "notes": null
+    },
+    {
+      "case_id": "CASE-09",
+      "version_A": {
+        "verdict": null,
+        "evidence": null
+      },
+      "version_B": {
+        "verdict": null,
+        "evidence": null
+      },
+      "notes": null
+    },
+    {
+      "case_id": "CASE-10",
+      "version_A": {
+        "verdict": null,
+        "evidence": null
+      },
+      "version_B": {
+        "verdict": null,
+        "evidence": null
+      },
+      "notes": null
+    },
+    {
+      "case_id": "CASE-11",
+      "version_A": {
+        "verdict": null,
+        "evidence": null
+      },
+      "version_B": {
+        "verdict": null,
+        "evidence": null
+      },
+      "notes": null
+    },
+    {
+      "case_id": "CASE-12",
+      "version_A": {
+        "verdict": null,
+        "evidence": null
+      },
+      "version_B": {
+        "verdict": null,
+        "evidence": null
+      },
+      "notes": null
+    },
+    {
+      "case_id": "CASE-13",
+      "version_A": {
+        "verdict": null,
+        "evidence": null
+      },
+      "version_B": {
+        "verdict": null,
+        "evidence": null
+      },
+      "notes": null
+    },
+    {
+      "case_id": "CASE-14",
+      "version_A": {
+        "verdict": null,
+        "evidence": null
+      },
+      "version_B": {
+        "verdict": null,
+        "evidence": null
+      },
+      "notes": null
+    }
+  ],
+  "quality_scores": {
+    "clarity": null,
+    "audience_fit": null,
+    "usefulness": null
+  },
+  "human_review": {
+    "package_version": null,
+    "decision": null,
+    "reviewer": null
+  },
+  "remaining_blockers": []
+}

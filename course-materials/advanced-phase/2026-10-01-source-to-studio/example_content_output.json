@@ -1,0 +1,83 @@
+{
+  "newsletter": {
+    "title": "One source and several useful formats",
+    "body": "Synthetic practice example. All event details below are fictional.\n\nA useful content workflow starts with a clear source. Before choosing a format, choose one idea worth explaining and check the facts that support it. Names, dates, times, and amounts should stay consistent as the content changes shape.\n\nBright Harbor Lab's fictional workshop explores this process online on 15 October 2026 at 16:00 UTC. The session lasts 60 minutes, and participants need no coding experience.\n\nThe exercise begins with source notes, which become a newsletter. That newsletter is then adapted into social posts and a short text-led video. A human reviews the content package before publication. The aim of this exercise is to practice the process, rather than add unsupported claims to make the content sound more impressive.\n\nFor the practice package, keep the original source close at hand. If a detail is missing, leave it out or flag it for review. This source does not provide a registration link or price.\n\nRead the practice newsletter.",
+    "citations": [
+      "F01",
+      "F02",
+      "F03",
+      "F04",
+      "F05",
+      "F06",
+      "F07",
+      "F08",
+      "F09"
+    ]
+  },
+  "linkedin": {
+    "body": "Synthetic practice example.\n\nOne source, several useful ways to explain it.\n\nBright Harbor Lab's fictional online workshop is on 15 October 2026 at 16:00 UTC and lasts 60 minutes. No coding experience is needed.\n\nThe exercise moves from source notes to a newsletter, social posts, and a short text-led video. Choose one useful idea, check names and dates against the source, and ask a human to review the content package before publication.\n\nKeep the facts consistent as the format changes.\n\nRead the practice newsletter.",
+    "citations": [
+      "F01",
+      "F02",
+      "F03",
+      "F04",
+      "F05",
+      "F06",
+      "F07",
+      "F08"
+    ]
+  },
+  "x": {
+    "body": "Synthetic practice example: Bright Harbor Lab's online workshop is 15 Oct 2026 at 16:00 UTC, for 60 minutes. Turn source notes into a newsletter, posts, and a short video. No coding needed. Read the practice newsletter.",
+    "citations": [
+      "F01",
+      "F02",
+      "F03",
+      "F04",
+      "F05",
+      "F08"
+    ]
+  },
+  "video": {
+    "title": "One source and several formats",
+    "scenes": [
+      {
+        "text": "Synthetic practice example\nOne source. Several useful formats.",
+        "duration_seconds": 6,
+        "citations": [
+          "F01",
+          "F05",
+          "F06"
+        ]
+      },
+      {
+        "text": "Synthetic practice example\nBright Harbor Lab\n15 Oct 2026 | 16:00 UTC\nOnline | 60 minutes",
+        "duration_seconds": 8,
+        "citations": [
+          "F01",
+          "F02",
+          "F03"
+        ]
+      },
+      {
+        "text": "Synthetic practice example\nSource notes > Newsletter > Posts > Video\nNo coding experience needed",
+        "duration_seconds": 8,
+        "citations": [
+          "F01",
+          "F04",
+          "F05"
+        ]
+      },
+      {
+        "text": "Synthetic practice example\nCheck the source. Ask for human review.\nRead the practice newsletter.",
+        "duration_seconds": 8,
+        "citations": [
+          "F01",
+          "F06",
+          "F07",
+          "F08"
+        ]
+      }
+    ]
+  }
+}

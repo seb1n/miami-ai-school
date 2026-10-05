@@ -1,0 +1,22 @@
+{
+  "status": "AUTHORED FIXTURES, NOT MODEL RESULTS",
+  "examples": [
+    {
+      "id": "CAL-GOOD",
+      "file": "example_content_output.json",
+      "expected_hard_verdict": "Text/source constraints pass after claim-by-claim human verification; actual video checks NOT RUN until rendered",
+      "provisional_rubric": [
+        2,
+        2,
+        2
+      ],
+      "note": "Rubric anchors are to calibrate, not assert actual reader outcomes."
+    },
+    {
+      "id": "CAL-BAD",
+      "file": "calibration_bad_output.json",
+      "expected_hard_verdict": "FAIL: doubled engagement and only ten spots are unsupported by F09",
+      "rubric_note": "A tone score cannot override the factual failures."
+    }
+  ]
+}

@@ -1,5 +1,11 @@
 # Code and classroom examples
 
+## Available examples
+
+- [Source to Studio, October 1, 2026](../course-materials/advanced-phase/2026-10-01-source-to-studio/starter/): local Python classroom starter with synthetic replay, newsletter and social drafts, a sample MP4, human review and evaluation. Kept with its [complete teaching kit](../course-materials/advanced-phase/2026-10-01-source-to-studio/). Replay requires Python 3.10+ and no API key or third-party packages.
+
+## Adding an example
+
 Create a separate folder for each runnable example or starter project.
 
 Each example should include:
