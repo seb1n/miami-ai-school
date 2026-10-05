@@ -1,0 +1,112 @@
+{
+  "type": "object",
+  "properties": {
+    "newsletter": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "citations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "title",
+        "body",
+        "citations"
+      ],
+      "additionalProperties": false
+    },
+    "linkedin": {
+      "type": "object",
+      "properties": {
+        "body": {
+          "type": "string"
+        },
+        "citations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "body",
+        "citations"
+      ],
+      "additionalProperties": false
+    },
+    "x": {
+      "type": "object",
+      "properties": {
+        "body": {
+          "type": "string"
+        },
+        "citations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "body",
+        "citations"
+      ],
+      "additionalProperties": false
+    },
+    "video": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "scenes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string"
+              },
+              "duration_seconds": {
+                "type": "number"
+              },
+              "citations": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "text",
+              "duration_seconds",
+              "citations"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "title",
+        "scenes"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "newsletter",
+    "linkedin",
+    "x",
+    "video"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,45 @@
+{
+  "type": "mocked DOM state tests, NOT browser rendering or media playback",
+  "checks": [
+    {
+      "name": "default replay, nine source facts and live button hidden",
+      "passed": true
+    },
+    {
+      "name": "four artifact cards, honest replay label and gated evaluation/video approval",
+      "passed": true
+    },
+    {
+      "name": "good replay sends correct bounded request",
+      "passed": true
+    },
+    {
+      "name": "source strings rendered via textContent, no created HTML image node",
+      "passed": true
+    },
+    {
+      "name": "four human decisions unlock formal checks even when changes requested",
+      "passed": true
+    },
+    {
+      "name": "new version with reset reviews relocks evaluation",
+      "passed": true
+    },
+    {
+      "name": "invalid edit JSON produces clear UI error",
+      "passed": true
+    },
+    {
+      "name": "mocked video-ended event enables decision; actual media playback not tested here",
+      "passed": true
+    },
+    {
+      "name": "watching unchanged video remains valid after a text review action",
+      "passed": true
+    },
+    {
+      "name": "new version resets playback evidence",
+      "passed": true
+    }
+  ]
+}

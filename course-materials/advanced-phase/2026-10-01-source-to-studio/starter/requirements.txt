@@ -1,0 +1,2 @@
+# No third-party Python packages. Python >=3.10.
+# Optional local system tools: ffmpeg and ffprobe (official FFmpeg build).

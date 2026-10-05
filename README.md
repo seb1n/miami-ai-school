@@ -17,6 +17,7 @@ Course materials, presentations, hands-on exercises, example code, and project r
 - [Advanced Phase](course-materials/advanced-phase/)
 - [Session 2: Build and publish Content Studio](course-materials/advanced-phase/session-02/)
 - [Session 2 presentation prompts](course-materials/advanced-phase/session-02/build-prompts.md)
+- [October 1, 2026: Source to Studio](course-materials/advanced-phase/2026-10-01-source-to-studio/): complete teaching kit, presentation, workbooks, evaluation fixtures and local classroom starter.
 - [Design, migrate and deploy workshop](course-materials/advanced-phase/design-migrate-deploy/): website design, D1 to Supabase migration, and Vercel deployment.
 - [Master prompts](course-materials/advanced-phase/master-prompts/): customizable prompts for a mobile app, website/web app, and Content Studio.
 
